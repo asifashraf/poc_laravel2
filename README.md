@@ -6,7 +6,28 @@ export p_l2="/Users/asif/git-gh/poc_laravel2"
 export PATH="/Users/asif/git-gh/poc_laravel2/shell:$PATH"
 alias ll='source laravel2.sh'
 
+
 ```
+
+
+
+## ll command
+
+ll command works outside and inside the docker 
+
+outside: ./shell/laravel2.sh
+
+inside: ./shell/internal.sh
+
+## Auth views install
+
+`php artisan make:auth`
+
+or inside php container
+
+`ll artmakeauth`
+
+
 
 
 
