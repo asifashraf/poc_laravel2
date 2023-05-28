@@ -9,5 +9,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN echo "export PATH=\"/usr/local/bin/composer:\$PATH\"" >> ~/.bashrc
 RUN composer global require laravel/installer
 WORKDIR /app
-COPY usersapp /app
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+EXPOSE 8000
+CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "8000"]
