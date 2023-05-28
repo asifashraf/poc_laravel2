@@ -3,7 +3,7 @@ action=$1
 if [[ -z "$action" || "$action" == "--help" ]]; then
   echo  "== Laravel 2 == "
   echo  "comp complong compls complsall compfile"
-  echo  "dk:- up, down, re, ls, info, sh, bash, logs"
+  echo  "dk:- build, up, down, re, ls, info, sh, bash, logs"
   echo  "g: push"
 else
  case $action in
@@ -51,7 +51,11 @@ else
     docker exec -it $2 bash
     ;;
 
- 
+  "dkbuild")
+    cd $p_l2
+	  docker-compose build
+  ;; 
+
   "dkup")
     cd $p_l2
 	  docker-compose up -d
