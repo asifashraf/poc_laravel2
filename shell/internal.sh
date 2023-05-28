@@ -3,7 +3,7 @@ action=$1
 if [[ -z "$action" || "$action" == "--help" ]]; then
   echo  "== Laravel 2 interanl == "
   echo  "v"
-  echo "art: clear"
+  echo "art: clear makeauth"
   echo "cpr: install"
   echo "db: mig"
 else
@@ -17,7 +17,11 @@ else
   "artclear")
     cd /app
     php artisan optimize:clear
+    ;;
 
+  "artmakeauth")
+    cd /app
+    php artisan make:auth
     ;;
 
     "cprinstall")
