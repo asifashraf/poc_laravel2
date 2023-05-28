@@ -2,6 +2,7 @@ version: '3'
 services:
 
   php:
+    container_name: l2php
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,6 +15,7 @@ services:
       - rabbitmq
 
   mysql:
+    container_name: l2mysql
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=AsQw!2AsQw!2
@@ -24,6 +26,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   rabbitmq:
+    container_name: l2rmq
     image: rabbitmq:latest
     ports:
       - 5672:5672

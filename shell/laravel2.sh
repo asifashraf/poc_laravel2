@@ -2,19 +2,76 @@
 action=$1
 if [[ -z "$action" || "$action" == "--help" ]]; then
   echo  "== Laravel 2 == "
-  echo  "dk: up"
+  echo  "comp complong compls complsall compfile"
+  echo  "dk:- up, down, re, ls, info, sh, bash, logs"
   echo  "g: push"
 else
  case $action in
 
-  "hi")
-	    echo "-- hi --"
-  ;;
+  "comp")
+    docker ps -a --format "{{.Label \"com.docker.compose.project\"}}" | awk '!seen[$0]++ && NF' | sort
+    ;;
+
+  "complong")
+	  docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Label "com.docker.compose.project"}}'
+    ;;
+
+
+
+  "compls")
+    docker ps --filter "label=com.docker.compose.project=$2" --format "table {{.ID}}\t{{.Names}}\t{{.Command}}\t{{.Ports}}"
+    ;;
+
+
+  "complsall")
+    docker ps -a --filter "label=com.docker.compose.project=$2" --format "table {{.ID}}\t{{.Names}}\t{{.Command}}\t{{.Ports}}"
+    ;;
+
+
+  "compfile")
+	cat docker-compose.yml
+    ;;
+
+
+  "dkinfo")
+    docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.Command}}" | grep $2
+    ;;
+
+
+  "dklogs")
+    docker logs -f  $2
+    ;;
+
+
+  "dksh")
+    docker exec -it $2 sh
+    ;;
+
+  "dkbash")
+    docker exec -it $2 bash
+    ;;
+
  
   "dkup")
     cd $p_l2
 	  docker-compose up -d
   ;;
+
+  "dkdown")
+    cd $p_l2
+	  docker-compose down
+  ;;
+
+  "dkre")
+    cd $p_l2
+	  docker-compose restart
+  ;;
+
+  "dkls")
+    cd $p_l2
+	  docker-compose ls
+  ;;
+
 
   "gpush")
     cd $p_l2
