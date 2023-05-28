@@ -12,7 +12,11 @@ RUN apt-get update \
         mariadb-client \
     && rm -rf /var/lib/apt/lists/*
 
-    RUN docker-php-ext-install pdo_mysql mbstring xml zip
+RUN docker-php-ext-install pdo_mysql mbstring xml zip
+
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN echo "export PATH=\"/usr/local/bin/composer:\$PATH\"" >> ~/.bashrc
