@@ -1,11 +1,13 @@
 #!/bin/bash
 action=$1
 if [[ -z "$action" || "$action" == "--help" ]]; then
-  echo  "== Laravel 2 interanl == "
-  echo  "v"
-  echo "art: clear makeauth"
-  echo "cpr: install"
-  echo "db: mig"
+  echo "== Laravel 2 interanl == "
+  echo "v"
+  echo "artisan(art):   clear, makeauth"
+  echo "composer(cpr):  install"
+  echo "db(db):         mig"
+  echo "node(n):        install, dev, watch"
+
 else
  case $action in
 
@@ -14,27 +16,42 @@ else
     php artisan --version
     ;;
 
-  "artclear")
+  "art.clear")
     cd /app
     php artisan optimize:clear
     ;;
 
-  "artmakeauth")
+  "art.makeauth")
     cd /app
     php artisan make:auth
     ;;
 
-    "cprinstall")
+  "cpr.install")
     cd /app
     composer install
     ;;
 
 
-    "dbmig")
+  "db.mig")
     cd /app
     php artisan migrate
     ;;
 
+  "n.install")
+    cd /app
+    npm install
+    ;;
+
+  
+  "n.dev")
+    cd /app
+    npm install
+    ;;
+
+  "n.watch")
+    cd /app
+    npm run watch
+    ;;
 
   *)
     # Handle unknown or missing arguments

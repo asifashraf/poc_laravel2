@@ -27,8 +27,13 @@ or inside php container
 
 `ll artmakeauth`
 
+## install npm packages
 
+go inside the docker `ll dkbash l2php`
 
+run command for npm install `ll ninstall`
+
+then run `ll ndev` (this will do npm run dev)
 
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
