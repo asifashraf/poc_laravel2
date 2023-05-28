@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 8008:8000
+    depends_on:
+      - mysql
+      - rabbitmq
+
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=AsQw!2AsQw!2
+      - MYSQL_DATABASE=users
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=AsQw!2AsQw!2
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+volumes:
+  mysql_data:
